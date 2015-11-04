@@ -1,4 +1,4 @@
-# New requirements to be implemented by candidate
+# New requirements to be implemented by the candidate
 
 - Update the [color pallete](http://www.colourlovers.com/palette/92095/Giant_Goldfish)
 - Include the date and time the TODO item was created
