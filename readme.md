@@ -1,3 +1,9 @@
+# New requirements to be implemented by candidate
+
+- Update the [color pallete](http://www.colourlovers.com/palette/92095/Giant_Goldfish)
+- Include the date and time the TODO item was created
+- Fix a user input validation bug. The application should not allow a TODO with the same name an existing TODO.
+
 # Application Specification
 
 We have created this short spec to help you create awesome and consistent todo apps. Make sure to not only read it, but also understand.
@@ -23,7 +29,7 @@ When there are no todos, `#main` and `#footer` should be hidden.
 
 ### New todo
 
-New todos are entered in the input at the top of the app. The input element should be focused when the page is loaded preferably using the `autofocus` input attribute. Pressing Enter creates the todo, appends it to the todo list and clears the input. Make sure to `.trim()` the input and then check that it's not empty before creating a new todo.
+New todos are entered in the input at the bottom of the app. The input element should be focused when the page is loaded preferably using the `autofocus` input attribute. Pressing Enter creates the todo, appends it to the todo list and clears the input. Make sure to `.trim()` the input and then check that it's not empty before creating a new todo.
 
 ### Mark all as complete
 
@@ -54,7 +60,3 @@ Removes completed todos when clicked. Should be hidden when there are no complet
 ### Persistence
 
 Your app should dynamically persist the todos to localStorage. If the framework has capabilities for persisting data (e.g. Backbone.sync), use that, otherwise vanilla localStorage. If possible, use the keys `id`, `title`, `completed` for each item. Make sure to use this format for the localStorage name: `todos-[framework]`. Editing mode should not be persisted.
-
-### Routing
-
-Routing is required for all frameworks. Use the built-in capabilities if supported, otherwise use the  [Flatiron Director](https://github.com/flatiron/director) routing library located in the `/assets` folder. The following routes should be implemented: `#/` (all - default), `#/active` and `#/completed` (`#!/` is also allowed). When the route changes the todo list should be filtered on a model level and the `selected` class on the filter links should be toggled. When an item is updated while in a filtered state, it should be updated accordingly. E.g. if the filter is `Active` and the item is checked, it should be hidden. Make sure the active filter is persisted on reload.
