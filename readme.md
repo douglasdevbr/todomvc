@@ -1,83 +1,60 @@
-# ![TodoMVC](media/logo.png)
+# Application Specification
 
-> Helping you select an MV\* framework
+We have created this short spec to help you create awesome and consistent todo apps. Make sure to not only read it, but also understand.
 
-### [Website](http://todomvc.com)&nbsp;&nbsp;&nbsp;&nbsp;[Blog](http://blog.tastejs.com)&nbsp;&nbsp;&nbsp;&nbsp;[TasteJS](http://tastejs.com)
+## Structure
 
-[![Build Status](https://travis-ci.org/tastejs/todomvc.svg)](https://travis-ci.org/tastejs/todomvc)
+### Code
 
+Make sure to follow these:
 
-Developers these days are spoiled with choice when it comes to selecting an MV\* framework for structuring and organizing JavaScript web apps.
+- Follow our [code style](codestyle.md).
+- Use double-quotes in HTML and single-quotes in JS and CSS.
+- Use npm packages for your third-party dependencies and manually remove files that aren't required for your app to run.
+- Use a constant instead of the keyCode directly: `var ENTER_KEY = 13;`
+- Apps should be written without any preprocessors (Sass/CoffeeScript/..).
+- We require apps to work in every browser we support (latest: Chrome, Firefox, Opera, Safari, IE9).
 
-Backbone, Ember, AngularJS... the list of new and stable solutions goes on and on, but just how do you decide on which to use in a sea of so many options?
+## Functionality
 
-To help solve this problem, we created TodoMVC - a project which offers the same Todo application implemented using MV* concepts in most of the popular JavaScript MV\* frameworks of today.
+### No todos
 
+When there are no todos, `#main` and `#footer` should be hidden.
 
-## Team
+### New todo
 
-TodoMVC would not be possible without a strong team of [contributors](https://github.com/tastejs/todomvc/contributors) helping push the project forward each day. In addition, we have a core project team composed of:
+New todos are entered in the input at the top of the app. The input element should be focused when the page is loaded preferably using the `autofocus` input attribute. Pressing Enter creates the todo, appends it to the todo list and clears the input. Make sure to `.trim()` the input and then check that it's not empty before creating a new todo.
 
-#### [Addy Osmani](http://github.com/addyosmani) - Founder/Lead
+### Mark all as complete
 
-<img align="left" width="40" height="40" src="http://www.gravatar.com/avatar/96270e4c3e5e9806cf7245475c00b275.png?s=40">
-  Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+This checkbox toggles all the todos to the same state as itself. Make sure to clear the checked state after the "Clear completed" button is clicked. The "Mark all as complete" checkbox should also be updated when single todo items are checked/unchecked. Eg. When all the todos are checked it should also get checked.
 
-#### [Sindre Sorhus](https://github.com/sindresorhus) - Lead Developer
+### Item
 
-<img align="left" width="40" height="40" src="http://www.gravatar.com/avatar/d36a92237c75c5337c17b60d90686bf9.png?s=40">
-Sindre is a Web Developer who leads core development, quality control and application design for the project. His engineering contributions have helped us ensure consistency and best practices are enforced wherever possible. Sindre also leads up development of the TodoMVC application spec.
+A todo item has three possible interactions:
 
-#### [Pascal Hartig](https://github.com/passy) - Developer
+1. Clicking the checkbox marks the todo as complete by updating its `completed` value and toggling the class `completed` on its parent `<li>`
 
-<img align="left" width="40" height="40" src="http://www.gravatar.com/avatar/be451fcdbf0e5ff07f23ed16cb5c90a3.png?s=40">
-Pascal is a Software Engineer at Twitter with a deep passion for consistency. He watches pull requests and helps developers getting their contributions integrated with TodoMVC.
+2. Double-clicking the `<label>` activates editing mode, by toggling the `.editing` class on its `<li>`
 
-#### [Stephen Sawchuk](https://github.com/stephenplusplus) - Developer
+3. Hovering over the todo shows the remove button (`.destroy`)
 
-<img align="left" width="40" height="40" src="https://avatars3.githubusercontent.com/u/723048?v=2&s=40">
-Stephen is a Front-end Engineer at Quicken Loans that cares about improving the maintainability and developer experience of open-source projects. His recent contributions include helping us move all apps over to using Bower and implementing the new information bar.
+### Editing
 
-#### [Colin Eberhardt](https://github.com/colineberhardt) - Developer
+When editing mode is activated it will hide the other controls and bring forward an input that contains the todo title, which should be focused (`.focus()`). The edit should be saved on both blur and enter, and the `editing` class should be removed. Make sure to `.trim()` the input and then check that it's not empty. If it's empty the todo should instead be destroyed. If escape is pressed during the edit, the edit state should be left and any changes be discarded.
 
-<img align="left" width="40" height="40" src="https://secure.gravatar.com/avatar/73bba00b41ff1c9ecc3ee29487bace7d?s=40">
-Colin is a software consultant at Scott Logic who is passionate about all software - from JavaScript to Java, and C# to Objective-C. His recent contribution to the project has been a fully automated test suite.
+### Counter
 
-#### [Sam Saccone](https://github.com/samccone) - Developer
+Displays the number of active todos in a pluralized form. Make sure the number is wrapped by a `<strong>` tag. Also make sure to pluralize the `item` word correctly: `0 items`, `1 item`, `2 items`. Example: **2** items left
 
-<img align="left" width="40" height="40" src="http://en.gravatar.com/userimage/602125/f2f1d93164ec62b527f0398c65b2d1f3.jpg?size=40">
-Sam is a Software Engineer at Google who is driven by an endless desire to create, solve problems, and improve developers lives.
+### Clear completed button
 
-#### [Arthur Verschaeve](https://github.com/arthurvr) - Developer
+Removes completed todos when clicked. Should be hidden when there are no completed todos.
 
-<img align="left" width="40" height="40" src="https://en.gravatar.com/avatar/e34daab0d2e344219adb5234198269c5?size=40">
-Arthur is an open-source fanboy from Belgium. He is passionate about developer tooling and all things JavaScript.
+### Persistence
 
-#### [Gianni Chiappetta](https://github.com/gf3) - Logo designer
+Your app should dynamically persist the todos to localStorage. If the framework has capabilities for persisting data (e.g. Backbone.sync), use that, otherwise vanilla localStorage. If possible, use the keys `id`, `title`, `completed` for each item. Make sure to use this format for the localStorage name: `todos-[framework]`. Editing mode should not be persisted.
 
-<img align="left" width="40" height="40" src="http://www.gravatar.com/avatar/4b0209ae3652cc5a7d53545e759fbe39.png?s=40">
-Gianni is a programmer and designer currently working as the Chief Rigger at MetaLab.
+### Routing
 
-## Disclaimer
-
-<img align="right" width="230" height="230" src="media/icon-small.png">
-
-TodoMVC has been called many things including the 'Speed-dating' and 'Rosetta Stone' of MV\* frameworks. Whilst we hope that this project is able to offer assistance in deciding what frameworks are worth spending more time looking at, remember that the Todo application offers a limited view of what a framework may be capable of.
-
-It is meant to be used as a gateway to reviewing how a basic application using a framework may be structured and we heavily recommend investing time researching a solution in more depth before opting to use it.
-
-Also, please keep in mind that TodoMVC is not the perfect way to compare the size of different frameworks. We intentionally use the unminified versions to make reading the source code easier.
-
-
-## Getting Involved
-
-Whilst we enjoy implementing and improving existing Todo apps, we're always interested in speaking to framework authors (and users) wishing to share Todo app implementations in their framework/solution of choice.
-
-Check out our [contribution docs](contributing.md) for more info.
-
-
-## License
-
-Everything in this repo is MIT License unless otherwise specified.
-
-MIT © Addy Osmani, Sindre Sorhus, Pascal Hartig, Stephen Sawchuk.
+Routing is required for all frameworks. Use the built-in capabilities if supported, otherwise use the  [Flatiron Director](https://github.com/flatiron/director) routing library located in the `/assets` folder. The following routes should be implemented: `#/` (all - default), `#/active` and `#/completed` (`#!/` is also allowed). When the route changes the todo list should be filtered on a model level and the `selected` class on the filter links should be toggled. When an item is updated while in a filtered state, it should be updated accordingly. E.g. if the filter is `Active` and the item is checked, it should be hidden. Make sure the active filter is persisted on reload.
