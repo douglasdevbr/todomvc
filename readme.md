@@ -22,8 +22,6 @@ Make sure to follow these:
 
 - Follow our [code style](codestyle.md).
 - Use double-quotes in HTML and single-quotes in JS and CSS.
-- Use npm packages for your third-party dependencies and manually remove files that aren't required for your app to run.
-- Use a constant instead of the keyCode directly: `var ENTER_KEY = 13;`
 - Apps should be written without any preprocessors (Sass/CoffeeScript/..).
 - We require apps to work in every browser we support (latest: Chrome, Firefox, Opera, Safari, IE9).
 
