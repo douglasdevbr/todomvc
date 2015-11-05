@@ -62,7 +62,3 @@ Displays the number of active todos in a pluralized form. Make sure the number i
 ### Clear completed button
 
 Removes completed todos when clicked. Should be hidden when there are no completed todos.
-
-### Persistence
-
-Your app should dynamically persist the todos to localStorage. If the framework has capabilities for persisting data (e.g. Backbone.sync), use that, otherwise vanilla localStorage. If possible, use the keys `id`, `title`, `completed` for each item. Make sure to use this format for the localStorage name: `todos-[framework]`. Editing mode should not be persisted.
