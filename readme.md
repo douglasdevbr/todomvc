@@ -1,7 +1,7 @@
 # Initial setup
 
 - Fork this git repository 
-- Read carefully this document and implement the [3 new requirements](readme.md# New requirements to be implemented by the candidate) 
+- Read carefully this document and implement the 3 new requirements 
 - Reply the e-mail you received from HR including a hyperlink to your git repository
 
 # New requirements to be implemented by the candidate
