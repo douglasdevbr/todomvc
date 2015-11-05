@@ -8,7 +8,7 @@
 
 - Improve the user experience using your best judgment. Impress us changing the font, including images/glyphicons, changing the colors using [this pallete](http://www.colourlovers.com/palette/92095/Giant_Goldfish)
 - Include the date and time the todo was created/edited
-- There is bug in the application, validate the application against the specification and fix the bug. 
+- There is bug in the application functionality, validate the application against the specification and fix the bug. 
 
 # Application Specification
 
