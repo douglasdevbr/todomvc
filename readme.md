@@ -1,8 +1,14 @@
+# Initial setup
+
+- Fork this git repository 
+- Read carefully this document and implement the [3 new requirements](readme.md# New requirements to be implemented by the candidate) 
+- Reply the e-mail you received from HR including a hyperlink to your git repository
+
 # New requirements to be implemented by the candidate
 
-- Update the [color pallete](http://www.colourlovers.com/palette/92095/Giant_Goldfish)
-- Include the date and time the TODO item was created
-- Fix a user input validation bug. The application should not allow a TODO with the same name an existing TODO.
+- Improve the user experience using your best judgment. Impress us changing the font, including images/glyphicons, changing the colors using [this pallete](http://www.colourlovers.com/palette/92095/Giant_Goldfish)
+- Include the date and time the todo was created/edited
+- There is bug in the application, validate the application against the specification and fix the bug. 
 
 # Application Specification
 
@@ -29,7 +35,7 @@ When there are no todos, `#main` and `#footer` should be hidden.
 
 ### New todo
 
-New todos are entered in the input at the bottom of the app. The input element should be focused when the page is loaded preferably using the `autofocus` input attribute. Pressing Enter creates the todo, appends it to the todo list and clears the input. Make sure to `.trim()` the input and then check that it's not empty before creating a new todo.
+New todos are entered in the input at the bottom of the app. The input element should be focused when the page is loaded preferably using the `autofocus` input attribute. Pressing Enter creates the todo, appends it to the todo list and clears the input. Make sure to `.trim()` the input and then check that it's not empty before creating a new todo. The application should not allow a todo with the same name an existing todo.
 
 ### Mark all as complete
 
