@@ -28,15 +28,26 @@ angular.module('todomvc')
 				{ completed: true } : {};
 		});
 
+		//Rq2 = add creation date
 		$scope.addTodo = function () {
 			var newTodo = {
 				title: $scope.newTodo.trim(),
-				completed: false
+				completed: false,
+				dateCreated: new Date(),
+				dateEdited: null
 			};
 
 			if (!newTodo.title) {
 				return;
 			}
+
+			// Rq3 = apply validation to ensure that not will add a  todo with the same name an existing one.
+			for (var i = 0, len = todos.length; i < len; i++) {
+				if(todos[i].title ==  newTodo.title){
+					return;
+				}
+			}
+
 
 			$scope.saving = true;
 			store.insert(newTodo)
@@ -76,6 +87,9 @@ angular.module('todomvc')
 				$scope.editedTodo = null;
 				return;
 			}
+
+			//Rq2 = add update date
+			todo.dateEdited= new  Date();
 
 			store[todo.title ? 'put' : 'delete'](todo)
 				.then(function success() {}, function error() {
